@@ -189,31 +189,37 @@ video:"https://www.w3schools.com/html/mov_bbb.mp4"
   features: [
     {
       icon: "📸",
+      image: "../images/post1.webp",
       title: "Photo Sharing",
       description: "Share high-quality photos with stunning filters and editing tools. Capture moments and make them unforgettable."
     },
     {
       icon: "🎬",
+      image: "../images/reels.webp",
       title: "Reels & Stories",
       description: "Create and discover short-form videos with music, effects, and creative tools that bring your stories to life."
     },
     {
       icon: "💬",
+      image: "../images/post3.webp",
       title: "Real-time Messaging",
       description: "Connect with friends through seamless messaging with voice notes, video calls, and group chats."
     },
     {
       icon: "🔔",
+      image: "../images/post4.webp",
       title: "Smart Notifications",
       description: "Stay updated with intelligent notifications that prioritize what matters most to you."
     },
     {
       icon: "🔒",
+      image: "../images/post5.webp",
       title: "Privacy First",
       description: "Your data, your control. Advanced privacy settings keep your content secure and visible only to whom you choose."
     },
     {
       icon: "🌍",
+      image: "../images/post6.webp",
       title: "Discover World",
       description: "Explore trending content, discover new creators, and find communities that share your passions."
     }

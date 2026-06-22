@@ -99,13 +99,13 @@ function renderPosts() {
           <div class="post-username">${post.username}</div>
           <div class="post-time">${post.time}</div>
         </div>
-        <div class="post-menu">
+        <a href="pages/404.html" class="post-menu post-menu-btn" aria-label="Open post menu">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
             <circle cx="8" cy="3" r="1.5"/>
             <circle cx="8" cy="8" r="1.5"/>
             <circle cx="8" cy="13" r="1.5"/>
           </svg>
-        </div>
+        </a>
       </div>
       <div class="post-image">
         <img src="${post.image}" alt="Post by ${post.username}" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:3rem>${post.imageIcon}</span>'">
@@ -119,20 +119,20 @@ function renderPosts() {
             </svg>
             <span class="count">${post.likes.toLocaleString()}</span>
           </span>
-          <span class="post-action">
+          <a href="pages/404.html" class="post-action post-comment-btn" aria-label="View comments">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
             <span class="count">${post.comments}</span>
-          </span>
-          <span class="post-action">
+          </a>
+          <a href="pages/404.html" class="post-action post-share-btn" aria-label="Share post">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
               <polyline points="16 6 12 2 8 6"/>
               <line x1="12" y1="2" x2="12" y2="15"/>
             </svg>
             <span class="count">${post.shares}</span>
-          </span>
+          </a>
           <span class="post-action ${post.saved ? 'saved' : ''}" onclick="toggleSave(this)" style="margin-left:auto">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="${post.saved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
               <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
@@ -165,9 +165,11 @@ function renderReels() {
             <polygon points="5 3 19 12 5 21 5 3"/>
           </svg>
         </div>
-        <div class="reel-avatar">${reel.avatar}</div>
-        <div class="reel-username">${reel.username}</div>
-        <div class="reel-views">${reel.views} views</div>
+        <div class="reel-creator">
+          <div class="reel-avatar">${reel.avatar}</div>
+          <div class="reel-username">${reel.username}</div>
+          <div class="reel-views">${reel.views} views</div>
+        </div>
       </div>
     </div>
   `).join('');

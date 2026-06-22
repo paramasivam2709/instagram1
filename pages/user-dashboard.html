@@ -106,6 +106,16 @@
     .post-small:hover {
       transform: scale(1.02);
     }
+    .post-small > img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .post-small:hover > img {
+      transform: scale(1.06);
+    }
     .post-small-overlay {
       position: absolute;
       inset: 0;
@@ -223,64 +233,92 @@
         padding: 0 1rem 2rem;
       }
     }
+
+    .user-dashboard-sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 1100;
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 0;
+      background: var(--dark-surface);
+      border-right: 1px solid var(--border-color);
+      transition: transform 0.3s ease;
+    }
+    .user-sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0 1.25rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .user-sidebar-logo img { width: 38px; height: 38px; object-fit: contain; }
+    .user-sidebar-profile { padding: 1.5rem 1.25rem; text-align: center; border-bottom: 1px solid var(--border-color); }
+    .user-sidebar-avatar { width: 72px; height: 72px; display: grid; place-items: center; margin: 0 auto 0.75rem; border-radius: 50%; background: var(--gradient-primary); color: white; font-size: 1.5rem; font-weight: 800; }
+    .user-sidebar-profile h2 { font-size: 1rem; }
+    .user-sidebar-profile p { overflow: hidden; color: var(--text-muted); font-size: 0.75rem; text-overflow: ellipsis; white-space: nowrap; }
+    .user-sidebar-nav { flex: 1; padding: 1rem 0.75rem; }
+    .user-sidebar-link { width: 100%; display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: transparent; color: var(--text-secondary); font-size: 0.88rem; text-align: left; transition: var(--transition); }
+    .user-sidebar-link:hover, .user-sidebar-link.active { background: rgba(244,63,94,0.1); color: var(--accent-light); }
+    .user-sidebar-footer { padding: 1rem 0.75rem 0; border-top: 1px solid var(--border-color); }
+    .user-dashboard-shell { min-height: 100vh; margin-left: 260px; }
+    .user-dashboard-topbar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 2rem; border-bottom: 1px solid var(--border-color); background: rgba(30,41,59,0.92); backdrop-filter: blur(14px); }
+    .user-dashboard-topbar h1 { font-size: 1.15rem; }
+    .user-sidebar-toggle { display: none; width: 40px; height: 40px; place-items: center; border-radius: 10px; background: var(--dark-card); color: var(--text-primary); font-size: 1.2rem; }
+    .user-dashboard-shell .dashboard-page { padding-top: 0; }
+    .user-dashboard-shell .dashboard-content { padding-top: 2rem; }
+    .user-sidebar-backdrop { position: fixed; inset: 0; z-index: 1090; display: none; background: rgba(2,6,23,0.7); }
+    .user-sidebar-backdrop.show { display: block; }
+
+    @media (max-width: 900px) {
+      .user-dashboard-sidebar { width: min(280px, 86vw); transform: translateX(-100%); box-shadow: 20px 0 50px rgba(0,0,0,0.35); }
+      .user-dashboard-sidebar.open { transform: translateX(0); }
+      .user-dashboard-shell { margin-left: 0; }
+      .user-sidebar-toggle { display: grid; }
+      .user-dashboard-topbar { padding: 0.75rem 1rem; }
+    }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="..//index.html" class="nav-logo">
-    <img src="..//images/logo.webp" alt="Stackly Logo" class="logo-img">
-    <span class="logo-text">Stackly</span>
-</a>
-    <div class="nav-links">
-      <a href="../index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="features.html" class="nav-link">Features</a>
-      <a href="contact.html" class="nav-link">Contact</a>
+  <!-- User Sidebar -->
+  <aside class="user-dashboard-sidebar" id="user-sidebar">
+    <a href="../index.html" class="user-sidebar-logo">
+      <img src="../images/logo.webp" alt="Stackly Logo">
+      <span class="logo-text">Stackly</span>
+    </a>
+    <div class="user-sidebar-profile">
+      <div class="user-sidebar-avatar" id="dashboard-avatar">U</div>
+      <h2 id="dashboard-name">User</h2>
+      <p id="dashboard-email">user@stackly.com</p>
     </div>
-    <div class="nav-actions">
-     <a href="login.html" class="btn btn-primary btn-sm">Log Out</a>  
-     
+    <nav class="user-sidebar-nav" aria-label="Dashboard navigation">
+      <button class="user-sidebar-link active" type="button" onclick="scrollToOverview()"><span>&#9638;</span>Overview</button>
+      <button class="user-sidebar-link" type="button" onclick="openDashboardTab('posts')"><span>&#128247;</span>My Posts</button>
+      <button class="user-sidebar-link" type="button" onclick="openDashboardTab('saved')"><span>&#128278;</span>Saved</button>
+      <button class="user-sidebar-link" type="button" onclick="openDashboardTab('notifications')"><span>&#128276;</span>Notifications</button>
+      <button class="user-sidebar-link" type="button" onclick="openDashboardTab('messages')"><span>&#128172;</span>Messages</button>
+      <button class="user-sidebar-link" type="button" onclick="openDashboardTab('settings')"><span>&#9881;</span>Settings</button>
+    </nav>
+    <div class="user-sidebar-footer">
+      <a href="../index.html" class="user-sidebar-link"><span>&#8592;</span>Back to site</a>
+      <a href="login.html" class="user-sidebar-link"><span>&#10140;</span>Log out</a>
     </div>
-    <button class="mobile-menu-btn">&#9776;</button>
-  </nav>
+  </aside>
+  <div class="user-sidebar-backdrop" id="user-sidebar-backdrop"></div>
+
+  <div class="user-dashboard-shell">
+    <header class="user-dashboard-topbar">
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <button class="user-sidebar-toggle" id="user-sidebar-toggle" type="button" aria-label="Open dashboard menu">&#9776;</button>
+        <h1>My Dashboard</h1>
+      </div>
+      <a href="login.html" class="btn btn-outline btn-sm">Log out</a>
+    </header>
 
   <!-- Dashboard -->
   <div class="dashboard-page">
     <div class="dashboard-content">
-      <!-- Profile Header -->
-      <div class="profile-header reveal">
-        <div class="profile-avatar" id="dashboard-avatar"></div>
-        <div class="profile-info">
-          <h2 id="dashboard-name">User</h2>
-          <p id="dashboard-email">user@stackly.com</p>
-          <div class="profile-stats">
-            <div class="profile-stat">
-              <div class="profile-stat-value">142</div>
-              <div class="profile-stat-label">Posts</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-value">1.2K</div>
-              <div class="profile-stat-label">Followers</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-value">486</div>
-              <div class="profile-stat-label">Following</div>
-            </div>
-            <div class="profile-stat">
-              <div class="profile-stat-value">8.5K</div>
-              <div class="profile-stat-label">Likes</div>
-            </div>
-          </div>
-        </div>
-        <a href="404.html" class="btn btn-outline btn-sm" style="align-self:flex-start" onclick="StacklyAuth.showToast('Edit profile coming soon!', 'info')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-          </svg>
-          Edit Profile
-        </a>
-      </div>
-
       <!-- Dashboard Overview -->
       <section class="user-overview reveal" data-delay="0.1" aria-labelledby="overview-title">
         <div class="overview-heading">
@@ -352,45 +390,68 @@
       <div class="tab-content active" id="tab-posts">
         <div class="post-grid-small">
           <div class="post-small" style="background:linear-gradient(135deg,#F43F5E22,#3B82F622)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127749;</div>
+            <img src="../images/post1.webp" alt="Mountain sunset post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#10084;&#65039; 234</span>
-              <span class="post-small-stat">&#128172; 18</span>
+             <a href="404.html" class="post-small-link">
+              <span class="post-small-stat">&#10084;&#65039; 234</span> </a>
+            <a href="404.html" class="post-small-link">
+              <span class="post-small-stat">&#128172; 18</span> </a>
+            </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#3B82F622,#10B98122)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127790;</div>
+            <img src="../images/post2.webp" alt="Food post" loading="lazy">
             <div class="post-small-overlay">
+            <a href="404.html" class="post-small-link">
               <span class="post-small-stat">&#10084;&#65039; 567</span>
-              <span class="post-small-stat">&#128172; 42</span>
+            </a>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128172; 42</span>
+              </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#10B98122,#F59E0B22)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127912;</div>
+            <img src="../images/post3.webp" alt="Live event post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#10084;&#65039; 89</span>
-              <span class="post-small-stat">&#128172; 7</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#10084;&#65039; 89</span>
+              </a>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128172; 7</span>
+              </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#F59E0B22,#EC489922)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127911;</div>
+            <img src="../images/post4.webp" alt="Creative workspace post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#10084;&#65039; 1.2K</span>
-              <span class="post-small-stat">&#128172; 89</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#10084;&#65039; 1.2K</span>
+              </a>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128172; 89</span>
+              </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#EC489922,#8B5CF622)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127775;</div>
+            <img src="../images/post5.webp" alt="Design studio post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#10084;&#65039; 445</span>
-              <span class="post-small-stat">&#128172; 31</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#10084;&#65039; 445</span>
+              </a>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128172; 31</span>
+              </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#8B5CF622,#06B6D422)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#128171;</div>
+            <img src="../images/post6.webp" alt="Music studio post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#10084;&#65039; 178</span>
-              <span class="post-small-stat">&#128172; 14</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#10084;&#65039; 178</span>
+              </a>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128172; 14</span>
+              </a>
             </div>
           </div>
         </div>
@@ -400,21 +461,27 @@
       <div class="tab-content" id="tab-saved">
         <div class="post-grid-small">
           <div class="post-small" style="background:linear-gradient(135deg,#06B6D422,#84CC1622)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127758;</div>
+            <img src="../images/post3.webp" alt="Saved live event post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#128278; Saved</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128278; Saved</span>
+              </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#84CC1622,#F43F5E22)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127795;</div>
+            <img src="../images/post1.webp" alt="Saved mountain post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#128278; Saved</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128278; Saved</span>
+              </a>
             </div>
           </div>
           <div class="post-small" style="background:linear-gradient(135deg,#F43F5E22,#3B82F622)">
-            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">&#127774;</div>
+            <img src="../images/post5.webp" alt="Saved design post" loading="lazy">
             <div class="post-small-overlay">
-              <span class="post-small-stat">&#128278; Saved</span>
+              <a href="404.html" class="post-small-link">
+                <span class="post-small-stat">&#128278; Saved</span>
+              </a>
             </div>
           </div>
         </div>
@@ -521,6 +588,7 @@
       </div>
     </div>
   </div>
+  </div>
 
   <script src="../js/data.js"></script>
   <script src="../js/auth.js"></script>
@@ -541,6 +609,17 @@
       if (!tabButton) return;
       switchTab(tabName, tabButton);
       tabButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      closeUserSidebar();
+    }
+
+    function scrollToOverview() {
+      document.getElementById('overview-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeUserSidebar();
+    }
+
+    function closeUserSidebar() {
+      document.getElementById('user-sidebar')?.classList.remove('open');
+      document.getElementById('user-sidebar-backdrop')?.classList.remove('show');
     }
 
     // Render messages
@@ -568,9 +647,15 @@
         document.getElementById('dashboard-avatar').textContent = user.avatar || 'U';
         document.getElementById('dashboard-name').textContent = user.name || 'User';
         document.getElementById('dashboard-email').textContent = user.email || 'user@stackly.com';
-        document.getElementById('nav-user-avatar').textContent = user.avatar || 'U';
-        document.getElementById('nav-user-name').textContent = user.name || 'User';
       }
+
+      const sidebar = document.getElementById('user-sidebar');
+      const backdrop = document.getElementById('user-sidebar-backdrop');
+      document.getElementById('user-sidebar-toggle')?.addEventListener('click', () => {
+        sidebar?.classList.toggle('open');
+        backdrop?.classList.toggle('show');
+      });
+      backdrop?.addEventListener('click', closeUserSidebar);
     });
   </script>
 </body>

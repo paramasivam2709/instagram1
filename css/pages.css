@@ -144,6 +144,11 @@
   margin: 0 auto;
 }
 
+.about-team-section {
+  padding-bottom: 6rem;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.3) 0%, var(--primary) 100%);
+}
+
 .team-card {
   background: var(--dark-surface);
   border-radius: var(--radius);
@@ -160,12 +165,59 @@
 
 .team-avatar {
   width: 100%;
-  height: 180px;
+  height: auto;
+  aspect-ratio: 4 / 5;
   background: linear-gradient(135deg, #334155 0%, #1E293B 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 4rem;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .about-team-section {
+    padding-bottom: 4rem;
+  }
+
+  .about-page {
+    padding-bottom: 0;
+  }
+
+  .about-page .footer {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .about-page .footer-brand {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .team-avatar {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.team-card:hover .team-avatar img {
+  transform: scale(1.06);
 }
 
 .team-info {
@@ -265,8 +317,33 @@
 }
 
 .feature-card:hover .feature-icon {
-  background: var(--accent);
   transform: scale(1.1);
+}
+
+.feature-icon-image {
+  object-fit: cover;
+  color: transparent;
+}
+
+.feature-card-image {
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--dark-surface);
+  background-position: center;
+  background-size: cover;
+}
+
+.feature-card-image .feature-title,
+.feature-card-image .feature-desc {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+}
+
+.feature-card-image .feature-desc {
+  color: #CBD5E1;
 }
 
 .feature-title {
@@ -1150,7 +1227,15 @@
 .goal-tip p { color:var(--text-secondary); font-size:.75rem; line-height:1.5; }
 .goal-tip strong { display:block; color:var(--warning); }
 
-.overview-link { color:var(--accent-light); font-size:.8rem; }
+.overview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  color: var(--accent-light);
+  font-size: .8rem;
+  white-space: nowrap;
+}
 .creator-suggestions { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.25rem; }
 .suggested-creator { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:.75rem; min-width:0; padding:1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); background:rgba(15,23,42,.35); }
 .suggested-avatar { width:42px; height:42px; display:grid; place-items:center; border-radius:50%; background:linear-gradient(135deg,#F43F5E,#8B5CF6); color:white; font-size:.75rem; font-weight:700; }
