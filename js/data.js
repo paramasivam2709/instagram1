@@ -122,56 +122,56 @@ id:1,
 username:"Alex Kim",
 avatar:"AK",
 views:"67K",
-video:"https://www.w3schools.com/html/mov_bbb.mp4"
+video:"./images/mov_bbb.mp4"
 },
 {
 id:2,
 username:"Priya Sharma",
 avatar:"PS",
 views:"178K",
-video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+video:"./images/flower.mp4"
 },
 {
 id:3,
 username:"James Wilson",
 avatar:"JW",
 views:"312K",
-video:"https://www.w3schools.com/html/movie.mp4"
+video:"./images/movie.mp4"
 },
 {
 id:4,
 username:"Luna Park",
 avatar:"LP",
 views:"95K",
-video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+video:"./images/flower.mp4"
 },
 {
 id:5,
 username:"David Lee",
 avatar:"DL",
 views:"145K",
-video:"https://www.w3schools.com/html/mov_bbb.mp4"
+video:"./images/mov_bbb.mp4"
 },
 {
 id:6,
 username:"Sarah Chen",
 avatar:"SC",
 views:"125K",
-video:"https://www.w3schools.com/html/movie.mp4"
+video:"./images/movie.mp4"
 },
 {
 id:7,
 username:"Marcus Johnson",
 avatar:"MJ",
 views:"89K",
-video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+video:"./images/flower.mp4"
 },
 {
 id:8,
 username:"Emily Rodriguez",
 avatar:"ER",
 views:"256K",
-video:"https://www.w3schools.com/html/mov_bbb.mp4"
+video:"./images/mov_bbb.mp4"
 }
 ],
 
