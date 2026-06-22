@@ -46,9 +46,14 @@ function initMobileMenu() {
   if (menuBtn && navLinks) {
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('mobile-open');
-      navLinks.style.cssText = navLinks.classList.contains('mobile-open')
-        ? 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--glass-bg);backdrop-filter:blur(20px);padding:2rem;gap:1.5rem;border-bottom:1px solid var(--glass-border);z-index:999;'
-        : '';
+    });
+
+    // Reset when switching to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        navLinks.classList.remove('mobile-open');
+        navLinks.removeAttribute('style');
+      }
     });
   }
 }

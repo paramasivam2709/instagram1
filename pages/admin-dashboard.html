@@ -118,6 +118,8 @@
       .dashboard-sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
+        width: min(280px, 86vw);
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.35);
       }
       .dashboard-sidebar.open {
         transform: translateX(0);
@@ -128,14 +130,115 @@
       .sidebar-toggle {
         display: block;
       }
+      .dashboard-topbar {
+        padding: 0.875rem 1rem;
+      }
+      .dashboard-topbar h1 {
+        font-size: 1rem !important;
+      }
+      .dashboard-section {
+        padding: 1rem;
+      }
+      .admin-charts-row,
+      .admin-tables-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .stat-card {
+        min-width: 0;
+        padding: 1rem;
+      }
+      .chart-bar {
+        width: 100%;
+        gap: 4px;
+        padding: 0.75rem 0;
+      }
+      .chart-bar-item {
+        width: auto;
+        min-width: 0;
+        flex: 1 1 0;
+      }
+      .dashboard-card-header {
+        gap: 0.75rem;
+        padding: 1rem;
+      }
+      .dashboard-card-body {
+        padding: 1rem;
+      }
+      .data-table {
+        min-width: 620px;
+      }
     }
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .stat-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 0.85rem;
+        align-items: center;
+      }
+      .stat-icon {
+        grid-row: 1 / 4;
+        margin-bottom: 0;
+      }
+      .stat-value,
+      .stat-label,
+      .stat-change {
+        grid-column: 2;
+      }
+      .stat-value {
+        font-size: 1.4rem;
+        margin-bottom: 0;
+      }
+      .stat-change {
+        justify-self: start;
+        margin-top: 0.25rem;
+      }
+      .dashboard-card-title {
+        font-size: 0.9rem;
+      }
+      .dashboard-card-header select {
+        max-width: 115px;
+      }
+    }
+    .sidebar-logo,
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 24px 20px;
+    margin-bottom:20px;
+    border-bottom:1px solid var(--border-color);
+}
+
+.logo-img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.logo-text{
+    font-size:18px;
+    font-weight:700;
+    line-height:1;
+    color:#fff;
+    display:flex;
+    align-items:center;
+}
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="dashboard-sidebar" id="sidebar">
-    <a href="..//index.html" class="nav-logo">
-    <img src="..//images/logo.png" alt="Stackly Logo" class="logo-img">
+    <a href="..//index.html" class="sidebar-logo">
+    <img src="..//images/logo.webp" alt="Stackly Logo" class="logo-img">
     <span class="logo-text">Stackly</span>
 </a>
     <nav class="sidebar-nav">
@@ -182,13 +285,11 @@
     <div class="dashboard-topbar">
       <div style="display:flex;align-items:center;gap:1rem">
         <button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
-        <h1 style="font-size:1.25rem;font-weight:700">Dashboard Overview</h1>
+       <h1 style="font-size:1.25rem;font-weight:700">Dashboard Overview</h1>
+      
       </div>
       <div style="display:flex;align-items:center;gap:1rem">
-        <div class="user-menu" style="display:flex">
-          <div class="user-avatar" id="dashboard-avatar"></div>
-          <span class="user-name" id="dashboard-name">Admin</span>
-        </div>
+        
       </div>
     </div>
 
@@ -235,7 +336,7 @@
       </div>
 
       <!-- Charts Row -->
-      <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+      <div class="admin-charts-row">
         <div class="dashboard-card">
           <div class="dashboard-card-header">
             <span class="dashboard-card-title">User Growth</span>
@@ -309,7 +410,7 @@
       </div>
 
       <!-- Tables Row -->
-      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:1.5rem">
+      <div class="admin-tables-row">
         <div class="dashboard-card">
           <div class="dashboard-card-header">
             <span class="dashboard-card-title">Recent Users</span>
@@ -354,8 +455,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       const user = StacklyAuth ? StacklyAuth.getUser() : null;
       if (user) {
-        document.getElementById('dashboard-avatar').textContent = user.avatar || 'A';
-        document.getElementById('dashboard-name').textContent = user.name || 'Admin';
+        const avatar = document.getElementById('dashboard-avatar');
+        const name = document.getElementById('dashboard-name');
+        if (avatar) avatar.textContent = user.avatar || 'A';
+        if (name) name.textContent = user.name || 'Admin';
       }
     });
   </script>

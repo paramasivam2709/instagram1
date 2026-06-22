@@ -8,6 +8,54 @@
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/pages.css">
   <style>
+    @media (max-width: 768px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .profile-header {
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  .profile-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile-stat {
+    min-width: 0;
+  }
+
+  .profile-stat-value {
+    font-size: 1.4rem;
+  }
+
+  .profile-stat-label {
+    font-size: 0.75rem;
+  }
+
+  .profile-info h2 {
+    font-size: 1.8rem;
+    word-break: break-word;
+  }
+
+  .profile-info p {
+    font-size: 0.9rem;
+    word-break: break-all;
+  }
+
+  .btn.btn-outline {
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+  }
+}
     .dashboard-tabs {
       display: flex;
       gap: 0.5rem;
@@ -191,15 +239,8 @@
       <a href="contact.html" class="nav-link">Contact</a>
     </div>
     <div class="nav-actions">
-      <div class="user-menu" style="display:flex">
-        <div class="user-avatar" id="nav-user-avatar"></div>
-        <span class="user-name" id="nav-user-name"></span>
-      </div>
-     <a href="login.html"> <button  class="btn btn-ghost btn-sm" style="margin-left:0.5rem">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-        </svg>
-      </button> </a>
+     <a href="login.html" class="btn btn-primary btn-sm">Log Out</a>  
+     
     </div>
     <button class="mobile-menu-btn">&#9776;</button>
   </nav>
@@ -240,13 +281,71 @@
         </a>
       </div>
 
+      <!-- Dashboard Overview -->
+      <section class="user-overview reveal" data-delay="0.1" aria-labelledby="overview-title">
+        <div class="overview-heading">
+          <div><span class="overview-eyebrow">Your workspace</span><h2 id="overview-title">Dashboard Overview</h2></div>
+          <span class="overview-period">Last 7 days</span>
+        </div>
+
+        <div class="quick-actions" aria-label="Quick actions">
+          <a href="404.html" class="quick-action"><span class="quick-action-icon action-create">&#43;</span><span><strong>Create post</strong><small>Share a new moment</small></span></a>
+          <a href="404.html" class="quick-action"><span class="quick-action-icon action-reel">&#127916;</span><span><strong>Upload reel</strong><small>Publish a short video</small></span></a>
+          <button type="button" class="quick-action" onclick="openDashboardTab('messages')"><span class="quick-action-icon action-message">&#128172;</span><span><strong>New message</strong><small>Start a conversation</small></span></button>
+          <a href="404.html" class="quick-action"><span class="quick-action-icon action-live">&#128308;</span><span><strong>Go live</strong><small>Meet your audience</small></span></a>
+        </div>
+
+        <div class="overview-layout">
+          <article class="dashboard-card performance-card">
+            <div class="dashboard-card-header">
+              <div><span class="overview-eyebrow">Performance</span><h3 class="dashboard-card-title">This week at a glance</h3></div>
+              <span class="growth-badge">&#8593; 18.4%</span>
+            </div>
+            <div class="performance-stats">
+              <div><span>Post views</span><strong>24.8K</strong><small>+3.2K this week</small></div>
+              <div><span>Interactions</span><strong>3,482</strong><small>14% engagement</small></div>
+              <div><span>New followers</span><strong>+126</strong><small>Best day: Friday</small></div>
+            </div>
+            <div class="mini-chart" aria-label="Post views increased throughout the week">
+              <div style="--bar:38%"><span>Mon</span></div><div style="--bar:54%"><span>Tue</span></div>
+              <div style="--bar:45%"><span>Wed</span></div><div style="--bar:67%"><span>Thu</span></div>
+              <div class="active" style="--bar:92%"><span>Fri</span></div><div style="--bar:72%"><span>Sat</span></div>
+              <div style="--bar:82%"><span>Sun</span></div>
+            </div>
+          </article>
+
+          <aside class="dashboard-card creator-goal-card">
+            <div class="dashboard-card-header">
+              <div><span class="overview-eyebrow">Creator goal</span><h3 class="dashboard-card-title">Grow your community</h3></div>
+              <span class="goal-icon">&#127919;</span>
+            </div>
+            <div class="goal-count"><strong>1,200</strong><span> / 1,500 followers</span></div>
+            <div class="goal-progress"><span style="width:80%"></span></div>
+            <p>Only 300 more followers to reach your monthly goal.</p>
+            <div class="goal-tip"><span>&#128161;</span><p><strong>Quick tip</strong> Posts with reels are reaching 2.4x more people this week.</p></div>
+          </aside>
+        </div>
+
+        <article class="dashboard-card suggestions-card">
+          <div class="dashboard-card-header">
+            <div><span class="overview-eyebrow">Fresh connections</span><h3 class="dashboard-card-title">Creators you may know</h3></div>
+            <a href="404.html" class="overview-link">View all &#8594;</a>
+          </div>
+          <div class="creator-suggestions">
+            <div class="suggested-creator"><div class="suggested-avatar">SC</div><div><strong>Sarah Chen</strong><small>Photography &middot; 12.5K followers</small></div><button class="btn btn-outline btn-sm" onclick="toggleFollow(this)">Follow</button></div>
+            <div class="suggested-creator"><div class="suggested-avatar avatar-blue">AK</div><div><strong>Alex Kim</strong><small>Technology &middot; 5.8K followers</small></div><button class="btn btn-outline btn-sm" onclick="toggleFollow(this)">Follow</button></div>
+            <div class="suggested-creator"><div class="suggested-avatar avatar-green">PS</div><div><strong>Priya Sharma</strong><small>Design &middot; 18.3K followers</small></div><button class="btn btn-outline btn-sm" onclick="toggleFollow(this)">Follow</button></div>
+          </div>
+        </article>
+      </section>
+
       <!-- Tabs -->
       <div class="dashboard-tabs reveal" data-delay="0.1">
-        <button class="dashboard-tab active" onclick="switchTab('posts')">My Posts</button>
-        <button class="dashboard-tab" onclick="switchTab('saved')">Saved</button>
-        <button class="dashboard-tab" onclick="switchTab('notifications')">Notifications</button>
-        <button class="dashboard-tab" onclick="switchTab('messages')">Messages</button>
-        <button class="dashboard-tab" onclick="switchTab('settings')">Settings</button>
+        <button class="dashboard-tab active" data-tab="posts" onclick="switchTab('posts', this)">My Posts</button>
+        <button class="dashboard-tab" data-tab="saved" onclick="switchTab('saved', this)">Saved</button>
+        <button class="dashboard-tab" data-tab="notifications" onclick="switchTab('notifications', this)">Notifications</button>
+        <button class="dashboard-tab" data-tab="messages" onclick="switchTab('messages', this)">Messages</button>
+        <button class="dashboard-tab" data-tab="settings" onclick="switchTab('settings', this)">Settings</button>
       </div>
 
       <!-- Tab: My Posts -->
@@ -429,12 +528,19 @@
   <script src="../js/main.js"></script>
   <script>
     // Tab switching
-    function switchTab(tabName) {
+    function switchTab(tabName, tabButton) {
       document.querySelectorAll('.dashboard-tab').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-      event.target.classList.add('active');
+      tabButton.classList.add('active');
       document.getElementById('tab-' + tabName).classList.add('active');
+    }
+
+    function openDashboardTab(tabName) {
+      const tabButton = document.querySelector(`[data-tab="${tabName}"]`);
+      if (!tabButton) return;
+      switchTab(tabName, tabButton);
+      tabButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     // Render messages

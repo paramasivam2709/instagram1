@@ -7,6 +7,30 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/pages.css">
+  <style>
+    .map-container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.map-container iframe{
+    width:100%;
+    height:450px;
+    border:none;
+    display:block;
+}
+
+@media (max-width:768px){
+    .map-container iframe{
+        height:300px;
+    }
+}
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -118,7 +142,24 @@
         </form>
       </div>
     </div>
-  </section>
+  </section><!-- Stackly Location Map -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">Our Location</span>
+    <h2 class="section-title">Visit <span>Stackly</span></h2>
+    <p class="section-subtitle">
+      MMR Complex, Chinna Thirupathi, Salem - 636008
+    </p>
+  </div>
+
+  <div class="map-container">
+    <iframe
+      src="https://maps.google.com/maps?q=MMR%20Complex%20Chinna%20Thirupathi%20Salem&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
   
 

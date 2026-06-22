@@ -7,6 +7,37 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/pages.css">
+  <style>
+    @media (max-width: 768px) {
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .feature-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 25px 20px;
+  }
+
+  .section-header {
+    padding: 0 15px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+}
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -29,14 +60,7 @@
     <button class="mobile-menu-btn">&#9776;</button>
   </nav>
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <div class="hero-particles"></div>
-    <div style="position:relative;z-index:2">
-      <h1 class="page-hero-title reveal">Powerful <span>Features</span></h1>
-      <p class="page-hero-subtitle reveal" data-delay="0.1">Everything you need to create, share, and connect</p>
-    </div>
-  </section>
+  
 
   <!-- Features Grid -->
   <section class="section">
@@ -102,6 +126,68 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Creator Workflow -->
+  <section class="section feature-workflow-section">
+    <div class="section-header reveal">
+      <span class="section-label">Made for creators</span>
+      <h2 class="section-title">From Idea to <span>Community</span></h2>
+      <p class="section-subtitle">A simple creative flow that keeps your content moving.</p>
+    </div>
+    <div class="workflow-grid">
+      <article class="workflow-card reveal" data-delay="0.1">
+        <span class="workflow-number">01</span>
+        <div class="workflow-icon">&#10024;</div>
+        <h3>Create your way</h3>
+        <p>Start with a photo, reel, story, or text post and make it yours with intuitive editing tools.</p>
+      </article>
+      <article class="workflow-card reveal" data-delay="0.2">
+        <span class="workflow-number">02</span>
+        <div class="workflow-icon">&#128640;</div>
+        <h3>Share instantly</h3>
+        <p>Publish now, save a draft, or schedule your content for the moment your audience is most active.</p>
+      </article>
+      <article class="workflow-card reveal" data-delay="0.3">
+        <span class="workflow-number">03</span>
+        <div class="workflow-icon">&#128200;</div>
+        <h3>Grow with insight</h3>
+        <p>Understand reach and engagement with clear analytics that help your next post perform even better.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Privacy & Control -->
+  <section class="section feature-control-section">
+    <div class="control-panel reveal">
+      <div class="control-copy">
+        <span class="section-label">Your space, your rules</span>
+        <h2 class="section-title">Built Around <span>Your Control</span></h2>
+        <p>Choose who sees your content, manage conversations, and shape a feed that feels like yours.</p>
+        <div class="control-points">
+          <div><span>&#128274;</span><strong>Private by choice</strong><small>Flexible audience and account controls</small></div>
+          <div><span>&#128737;</span><strong>Safer conversations</strong><small>Block, mute, report, and comment filters</small></div>
+          <div><span>&#127919;</span><strong>A feed that fits</strong><small>Tune recommendations around your interests</small></div>
+          <div><span>&#128190;</span><strong>Your data stays yours</strong><small>Download or remove your content anytime</small></div>
+        </div>
+      </div>
+      <div class="control-visual" aria-hidden="true">
+        <div class="control-orbit control-orbit-one"></div>
+        <div class="control-orbit control-orbit-two"></div>
+        <div class="control-shield">&#128737;</div>
+        <span class="control-chip chip-private">Private account</span>
+        <span class="control-chip chip-filter">Comment filters</span>
+        <span class="control-chip chip-data">Data controls</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Snapshot -->
+  <section class="feature-snapshot reveal" aria-label="Stackly platform highlights">
+    <div><strong>10M+</strong><span>Music tracks</span></div>
+    <div><strong>4K</strong><span>Video export</span></div>
+    <div><strong>500</strong><span>People per group</span></div>
+    <div><strong>24/7</strong><span>Account protection</span></div>
   </section>
 
   <!-- CTA Section -->
